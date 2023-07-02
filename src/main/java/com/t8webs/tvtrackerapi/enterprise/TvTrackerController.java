@@ -38,32 +38,11 @@ public class TvTrackerController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    /**
-     * Handle the / endpoint
-     * @return start.html
-     */
-    @RequestMapping("/")
-    public String index(){
-        return "start";
-    }
-
-    @RequestMapping("/browse")
-    public String browse(){
-        return "browse";
-    }
-
-    @RequestMapping("/signup")
-    public String signup(){
-        return"signup";
-    }
-
-    /**
-     * Handle the /favorites endpoint
-     * @return favorites.html
-     */
-    @RequestMapping("/favorites")
-    public String favorites(){
-        return "favorites";
+    @GetMapping("/_status/healthz")
+    public ResponseEntity readinessProbe() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity(headers, HttpStatus.OK);
     }
 
     /**
